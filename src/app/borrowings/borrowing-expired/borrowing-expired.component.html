@@ -1,0 +1,15 @@
+<h3>Expired Borrowings</h3>
+<div *ngIf="selectedBorrowing" class="mb-2 border border-1 border-success">
+    <p>Borrowing Details</p>
+    <p>Id: {{selectedBorrowing.id}}</p>
+    <p>Book: Id: {{selectedBorrowing.bookId}}, Title: {{selectedBorrowing.bookTitle}}</p>
+    <p>Borrower: {{selectedBorrowing.memberName}}</p>
+    <p>Borrowed since: {{selectedBorrowing.startDate |date: "dd/MM/yyyy"}}</p>
+    <p>Contact Details: Phone: {{selectedBorrowing.memberPhone}} || Email: {{selectedBorrowing.memberEmail}} ||
+    Address {{selectedBorrowing.memberAddress}}</p>
+    <button type="button" (click)="hide()" class="btn btn-danger">Close</button>
+</div>
+<div>
+    <button class="btn btn-success" (click)="ngOnInit()">Load...</button>
+    <app-borrowing-list searchMode="expired" (showSelection)="show($event)"></app-borrowing-list>
+</div>

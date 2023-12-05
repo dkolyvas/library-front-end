@@ -1,0 +1,64 @@
+
+
+<div class="border-1 border-secondary mb-3">
+    <form [formGroup]="form" >
+       
+        <div class="invisible">
+            <input type="text" [disabled]="true"  class="form-control" name="id" formControlName="id" id="id">
+        </div>
+    
+        <div class="row" mb-2>
+            <div class="col-2">
+                <label for="isbn" class="form-label"> ISBN</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" formControlName="isbn" id="isbn" name="isbn">
+            </div>
+            <div class="col-2">
+                <label for="title" class="form-label">Book Title</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" formControlName="title" id="title" name="title">
+            </div>
+  
+        </div>
+        <div class="row mb-2" >
+            <div class="col-2">
+                <label for="description" class="form-label">Description</label>
+            </div>
+            <div class="col-8">
+                <textarea name="description" id="description" cols="40" rows="5" formControlName="description" 
+                class="form-control" style="height: 3rem;"></textarea>
+            </div>            
+        </div>
+        <div class="row mb-2" >
+            <div class="col-2">
+                <label for="category" class="form-label">Category</label>
+            </div>
+            <div class="col-3">
+                <select class="form-select col-md-3" formControlName="categoryId" name="categoryId" id="category">
+                    <ng-container *ngIf="categories">
+                        <option *ngFor="let cat of categories" [value]="cat.id">{{cat.categoryName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+            <div class="col-2">
+                <label for="position" class="form-label">Position</label>
+            </div>
+            <div class="col-3">
+             <input type="text" class="form-control col-md-3" formControlName="position" id="position" name="position">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-2">
+                <label for="author" class="form-label">Author</label>
+            </div>
+            <div class="col-3">
+             <input type="text" class="form-control col-md-3" formControlName="author" id="author" name="author">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </form>
+</div>
+

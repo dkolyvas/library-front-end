@@ -1,0 +1,36 @@
+<table class="table table-success">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Position</th>
+            <th>Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr *ngFor="let book of books">
+                <td>{{book.id}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.category}}</td>
+                <td>{{book.position}}</td>
+                <td>
+                    <span *ngIf="book.available">Yes</span>
+                    <span *ngIf="!book.available">No</span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-warning" (click)="selectEdit(book.id)" *ngIf="!borrowingMode">Edit/View</button>
+                    <button class="btn btn-sm btn-success" (click)="selectHistory(book.id)" *ngIf="!borrowingMode">History</button>
+                    <button class="btn btn-sm btn-danger" (click)="selectDelete(book.id)" *ngIf="!borrowingMode">Delete</button>
+                    <button class="btn btn-sm btn-primary"(click)="selectEdit(book.id)" *ngIf="borrowingMode && book.available">Select</button>
+                </td>
+            </tr>
+        
+    </tbody>
+</table>

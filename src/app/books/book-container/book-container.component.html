@@ -1,0 +1,11 @@
+
+<app-book-search *ngIf="selectedFunction=='search'" (searchSubmit)="Search($event)" (addSubmit)="setAdd()"  [categories]="categories">
+</app-book-search>
+<app-book-list *ngIf="selectedFunction=='search'" [books]="bookList" (onEdit)="selectBookToUpdate($event)" 
+(onDelete)="deleteBook($event)" (onHistory)="showBorrowingHistory($event)">
+</app-book-list>
+<app-book-add *ngIf="selectedFunction=='edit'" [book]="selectedBook"  [categories]="categories"(cancelClick)="returnToList()" (addSubmit)="addOrUpdate($event)">
+</app-book-add>
+<app-borrowing-list *ngIf="selectedFunction=='history'" [bookId]="selectedBook?.id" [bookName]="selectedBook?.title" 
+ (returnSelected)="returnToList()" searchMode="book"></app-borrowing-list>
+<div class="text-danger text-sm-center" *ngIf="errors">{{errors.error |json}}</div>

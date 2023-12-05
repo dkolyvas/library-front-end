@@ -1,0 +1,52 @@
+<div class="border-1 border-secondary mb-3">
+    <form [formGroup]="form" >
+        <div class="row">
+            <div class="col-2">
+                <label for="id" class="form-label">Member Id</label>
+            </div>
+            <div class="col-3">
+                <input type="text" readonly  class="form-control" name="id" formControlName="id" id="id">
+            </div>
+        </div>
+        <div class="row" mb-2>
+            <div class="col-2">
+                <label for="firstname" class="form-label"> First Name</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" formControlName="firstname" id="firstname" name="firstname">
+            </div>
+            <div class="col-2">
+                <label for="Lastname" class="form-label">Last Name</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" formControlName="lastname" id="lastname" name="lastname">
+            </div>
+  
+        </div>
+      
+        <div class="row mb-2" >
+            <div class="col-2">
+                <label for="email" class="form-label">Email</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control col-md-3" formControlName="email" id="email" name="email">
+               </div>
+            <div class="col-2">
+                <label for="phone" class="form-label">Phone Number</label>
+            </div>
+            <div class="col-3">
+             <input type="text" class="form-control col-md-3" formControlName="phone" id="phone" name="phone">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-2">
+                <label for="address" class="form-label">Address</label>
+            </div>
+            <div class="col-4">
+             <input type="text" class="form-control col-md-3" formControlName="address" id="address" name="address">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="addClick()">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="cancelClick()">Cancel</button>
+    </form>
+</div>

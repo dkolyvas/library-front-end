@@ -1,0 +1,68 @@
+<div class="mb-3">
+    <h3>Subscriptions for {{member?.firstname}}  {{member?.lastname}}</h3>
+</div>
+<div class="mb-2 border-2 border-secondary p-2">
+    <h4>Current Subscription</h4>
+    <p>Active Since:  {{currentSubscription?.startDate| date: 'dd/MM/yyyy'}}</p>
+    <p>Expires At: {{currentSubscription?.endDate| date:'dd/MM/yyyy'}}</p>
+    <p>Allowance: {{currentSubscription?.alowance}}</p>
+    <p>Books borrowed untill now: {{booksBorrowed}}</p>
+    <button type="button" class="btn btn-primary" (click)="showAdd()">Add/Renew</button>
+    <button type="button" class="btn btn-warning" (click)="stopSubscription()">Stop</button>
+    <a routerLink="/members" class="btn btn-danger">Back</a>
+
+</div>
+<div class="mb-2 border-2 border-secondary" *ngIf="editMode">
+    <form [formGroup]="form" >
+        <div class="row">
+            <div class="col-2">
+                <label for="memberId" class="form-label">Member Id</label>
+            </div>
+            <div class="col-1">
+                <input type="text" readonly class="form-control" id="memberid" name="memberId" formControlName="memberId">
+            </div>
+            <div class="col-2">
+                <label for="subscriptionType" class="form-label">SubscriptionType</label>
+            </div>
+            <div class="col-3">
+                <select name="subscriptionType" id="subscriptionType" formControlName="subscriptionType" class="form-select">
+                    <option *ngFor="let type of subscTypes" [value]="type.id">Type {{type.name}}, {{type.duration}} days, {{type.allowance}} books</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <label for="replaceOld" class="form-label">Replace old subscription</label>
+            </div>
+            <div class="col-1">
+                <input type="checkbox" id="replaceOld" name="replaceOld" formControlName="replaceOld" class="form-check">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" (click)="addSubscription()">Submit</button>
+            <button type="button" class="btn btn-danger" ((click))="cancelAdd()">Cancel</button>
+        </div>
+    </form>
+</div>
+<div>
+    <h4>Subscription History</h4>
+    <table class="table table-success">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Allowance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of subscriptions">
+                <td>{{item.id}}</td>
+                <td>{{item.startDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{item.endDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{item.alowance}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-sm-start text-danger">
+    <p>{{error}}</p>
+</div>

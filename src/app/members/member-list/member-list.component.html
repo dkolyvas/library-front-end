@@ -1,0 +1,33 @@
+<table class="table table-success">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr *ngFor="let member of members">
+                <td>{{member.id}}</td>
+                <td>{{member.firstname}}</td>
+                <td>{{member.lastname}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.phone}}</td>
+                <td>{{member.address}}</td>
+                
+                <td>
+                    <button class="btn btn-sm btn-warning" (click)="selectMember(member.id)" *ngIf="!borrowingMode">Edit/View</button>
+                    <a class="btn btn-sm btn-secondary" [routerLink]="['/subscriptions', member.id]" *ngIf="!borrowingMode">Subscriptions</a>
+                    <button class="btn btn-sm btn-success" (click)="history(member.id)" *ngIf="!borrowingMode">History</button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(member.id)" *ngIf="!borrowingMode">Delete</button>
+                    <button class="btn btn-sm btn-primary" (click)="selectMember(member.id)" *ngIf="borrowingMode">Select</button>
+                </td>
+            </tr>
+        
+    </tbody>
+</table>

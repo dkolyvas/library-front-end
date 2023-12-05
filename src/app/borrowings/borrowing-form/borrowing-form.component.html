@@ -1,0 +1,31 @@
+<div class="mb-3">
+   <h4 > Book borrowings</h4>
+   <p>Please select a member and the book to be borrowed</p>
+   <button class="btn btn-warning" (click)="ResetForm()">Reset Form</button>
+</div>
+<div class=" text-sm-start text-danger" *ngIf="errors">
+    <p>{{errors.error |json}}</p>
+</div>
+<div class="text-sm text-success" *ngIf="successfullBorrowing">
+    <p>The record has been successfully registered</p>
+</div>
+<div class="mb-2 border border-1 border-success" *ngIf="!selectedMember">
+    <p>Please select a member</p>
+    <app-member-search (searchSubmit)="SearchMembers($event)" [borrowingMode]="true"></app-member-search>
+    <app-member-list [members]="memberList"[borrowingMode]="true" (updateSubmit)="SelectMember($event)"></app-member-list>
+</div>
+<div class="mb-2 border border-1 border-success" *ngIf="selectedMember">
+    <p>Selected Member : {{selectedMember.firstname}} {{selectedMember.lastname}}, ID: {{selectedMember.id}}</p>
+</div>
+<div class="mb-2 border border-1 border-success" *ngIf="!selectedBook">
+    <p>Please select a book</p>
+    <app-book-search (searchSubmit)="SearchBooks($event)" [borrowingMode]="true"></app-book-search>
+    <app-book-list [books]="bookList" (onEdit)="SelectBook($event)" [borrowingMode]="true"></app-book-list>
+</div>
+<div class="mb-2 border border-1 border-success" *ngIf="selectedBook">
+    <p>Selected Book: {{selectedBook.title}} , {{selectedBook.author}}, ID: {{selectedBook.id}}</p>
+</div>
+<div *ngIf="selectedBook && selectedMember">
+    <button type="button" class="btn btn-primary" (click)="Borrow()">Borrow</button>
+</div>
+

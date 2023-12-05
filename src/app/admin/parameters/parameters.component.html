@@ -1,0 +1,122 @@
+<div class="mb-1">
+    <h4>Categories</h4>
+    <button type="button" (click)="showEditCategory()" class="btn btn-success">{{this.catButtonText}}</button>
+</div>
+<div class="mb-2 border border-1 border-primary" *ngIf="editCategory">
+    <div *ngIf="addUpdateCategory">
+        <form [formGroup]="formCategories">
+            <div class="row">
+                <div class="col-1">
+                    <label for="id" class="form-label">ID</label>
+                </div>
+                <div class="col-2">
+                    <input class="form-control" readonly name="id" id="id" formControlName="id">
+                </div>
+                <div class="col-2">
+                    <label for="categoryName" class="form-label">Name</label>
+                </div>
+                <div class="col-3">
+                    <input class="form-control"  name="categoryName" id="categoryName" formControlName="categoryName">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-primary" (click)="addOrUpdateCategory()">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="selectAddCategory()">+ AddNew</button>
+        <h5>List</h5>
+        <table class="table table-sm table-success">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th> Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{category.categoryName}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="selectCategory(category.id)">Update</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteCategory(category.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+<div class="mb-1">
+    <h4>Subscription Types</h4>
+    <button type="button" (click)="showEditType()" class="btn btn-success">{{this.typButtonText}}</button>
+</div>
+<div class="mb-2 border border-1 border-primary" *ngIf="editType">
+    <div *ngIf="addUpdateType">
+        <form [formGroup]="formTypes">
+            <div class="row">
+                <div class="col-1">
+                    <label for="id" class="form-label">ID</label>
+                </div>
+                <div class="col-2">
+                    <input class="form-control" readonly name="id" id="id" formControlName="id">
+                </div>
+                <div class="col-2">
+                    <label for="name" class="form-label">Name</label>
+                </div>
+                <div class="col-3">
+                    <input class="form-control"  name="name" id="name" formControlName="name">
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="duration" class="form-label">Name</label>
+                </div>
+                <div class="col-3">
+                    <input class="form-control"  name="duration" id="duration" formControlName="duration">
+                </div>
+                <div class="col-2">
+                    <label for="allowance" class="form-label">Name</label>
+                </div>
+                <div class="col-3">
+                    <input class="form-control"  name="allowance" id="allowance" formControlName="allowance">
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="addOrUpdateType()">Save</button>
+                
+        </form>
+    </div>
+    <div>
+        <button class="btn btn-primary" (click)="selectAddType()">+ AddNew</button>
+        <h5>List</h5>
+        <table class="table table-sm table-success">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Duration (days)</th>
+                    <th>Book Allowance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let type of types">
+                    <td>{{type.name}}</td>
+                    <td>{{type.duration}}</td>
+                    <td>{{type.allowance}}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" (click)="selectType(type.id)">Update</button>
+                        <button class="btn btn-sm btn-danger" (click)="deleteType(type.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<div class="text-sm-start text-warning" *ngIf="error">
+    <p>{{error.error |json}}</p>
+</div>
+

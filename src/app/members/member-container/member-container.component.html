@@ -1,0 +1,13 @@
+<app-member-search *ngIf="mode=='search'" (searchSubmit)="searchMembers($event)" (addSubmit)="AddClick()">
+</app-member-search>
+<app-member-list *ngIf="mode=='search'" [members]="members" (updateSubmit)="UpdateClick($event)" (deleteSubmit)="Delete($event)"
+(historySubmit)="ShowHistory($event)">
+</app-member-list>
+<app-member-add-edit *ngIf="mode=='edit'" [member]="selectedMember" (addMember)="AddOrUpdate($event)" (cancel)="ReturnToList()">
+</app-member-add-edit>
+<app-borrowing-list *ngIf="mode=='history'" [memberId]="selectedMember?.id" [memberName]="selectedMember?.lastname +' '+ selectedMember?.firstname"
+(returnSelected)="ReturnToList()" searchMode="member"></app-borrowing-list>
+
+<div *ngIf="errors" class="text-sm-start text-danger">
+    {{errors.error|json}}
+</div>
