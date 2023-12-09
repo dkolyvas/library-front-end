@@ -66,7 +66,7 @@ export class BookContainerComponent {
   }
   setAdd(){
       this.selectedBook = undefined;
-      this.selectedFunction="add"
+      this.selectedFunction="edit"
 
       console.log('event emitter')
     

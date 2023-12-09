@@ -15,6 +15,9 @@ import { BorrowingInsertDTO } from './interfaces/borrowing-insert-dto';
 import { Credentials } from './interfaces/credentials';
 import { SecurityToken } from './interfaces/security-token';
 import { BehaviorSubject } from 'rxjs';
+import { UserShowDTO } from './interfaces/user-show-dto';
+import { UserRegisterDTO } from './interfaces/user-register-dto';
+import { UserUpdateDTO } from './interfaces/user-update-dto';
 const APIPATH:string = "https://localhost:5001/api"
 
 @Injectable({
@@ -176,6 +179,26 @@ export class AppService {
 
   login(credentials: Credentials){
     return this.http.post<SecurityToken>(`${APIPATH}/Users/Login`, credentials)
+  }
+
+  getAllUsers(){
+    return this.http.get<UserShowDTO[]>(`${APIPATH}/Users`)
+  }
+
+  getUser(username: string){
+    return this.http.get<UserShowDTO>(`${APIPATH}/Users/${username}`)
+  }
+
+  registerUser(user: UserRegisterDTO){
+    return this.http.post<UserShowDTO>(`${APIPATH}/Users`, user)
+  }
+
+  updateUser(user: UserUpdateDTO){
+    return this.http.put<UserShowDTO>(`${APIPATH}/Users/${user.username}`, user)
+  }
+
+  deleteUser(id: number){
+    return this.http.delete(`${APIPATH}/Users/${id}`)
   }
 
 

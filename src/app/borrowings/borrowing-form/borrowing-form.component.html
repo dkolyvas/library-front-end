@@ -19,7 +19,7 @@
 </div>
 <div class="mb-2 border border-1 border-success" *ngIf="!selectedBook">
     <p>Please select a book</p>
-    <app-book-search (searchSubmit)="SearchBooks($event)" [borrowingMode]="true"></app-book-search>
+    <app-book-search (searchSubmit)="SearchBooks($event)" [categories]="categoriesList" [borrowingMode]="true"></app-book-search>
     <app-book-list [books]="bookList" (onEdit)="SelectBook($event)" [borrowingMode]="true"></app-book-list>
 </div>
 <div class="mb-2 border border-1 border-success" *ngIf="selectedBook">

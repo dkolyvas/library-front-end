@@ -6,7 +6,7 @@
             <span *ngIf="searchMode == 'member'">Borrowing History for Member with ID {{memberId}}, {{memberName}}</span>
             <span *ngIf="searchMode=='expired'">Expired Borrowings</span>
         </p>
-        <button *ngIf="searchMode!='expired'" class="btn btn-warning" (click)="returnClicked()">Return Back</button>
+        <button *ngIf="searchMode!='expired'" class="btn btn-warning" (click)="returnClicked()">Go Back</button>
     </div>
     <table class="table table-success">
         <thead>

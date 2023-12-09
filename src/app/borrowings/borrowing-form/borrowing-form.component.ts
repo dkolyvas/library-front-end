@@ -11,6 +11,7 @@ import { BookSearchComponent } from '../../books/book-search/book-search.compone
 import { BookListComponent } from '../../books/book-list/book-list.component';
 import { MemberSearchComponent } from '../../members/member-search/member-search.component';
 import { MemberListComponent } from '../../members/member-list/member-list.component';
+import { CategoryShowDTO } from '../../interfaces/category-show-dto';
 
 @Component({
   selector: 'app-borrowing-form',
@@ -28,6 +29,7 @@ export class BorrowingFormComponent {
   selectedBook?: BookShowDTO
   errors: any
   successfullBorrowing?: boolean
+  categoriesList?: CategoryShowDTO[]
 
   SearchBooks(criteria: BookSearchDTO){
     this.bookList =[]
@@ -129,8 +131,20 @@ The method checks for the availability of the book and if true then makes it sel
         }
       })
     }
-    
+
   }
+  
+  ngOnInit(){
+    this.service.getCategories().subscribe({
+      next: (catList)=>{
+        this.categoriesList = catList;
+      },
+      error: (err)=>{
+        this.errors = err
+      }
+  });
+  }
+  
   
 
 }

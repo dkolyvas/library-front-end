@@ -1,0 +1,73 @@
+<div class="border border-1 border-success w-75 mb-2">
+    <form [formGroup]="form" >
+        <h3 class="mb-2"> View/Edit User Details</h3>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="username" class="form-label">Username</label>
+            </div>
+            <div class="col-3">
+                <input readonly name="username" id="username" formControlName="username" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="editDetails" class="form-label">Edit Name</label>
+            </div>
+            <div class="col-3">
+                <input type="checkbox" (change)="toggleEditName()" [checked]="editName" class="form-check">
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="name" class="form-label">First Name</label>
+            </div>
+            <div class="col-3">
+                <input type="text" [readOnly]="!editName" id="name" name="name" formControlName="name" class="form-control">
+            </div>
+            <div class="col-2">
+                <label for="surname" class="form-label">Last Name</label>
+            </div>
+            <div class="col-3">
+                <input type="text" [readOnly]="!editName" id="surname" name="surname" formControlName="surname" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="editPassword" class="form-label">Change Password</label>
+            </div>
+            <div class="col-3">
+                <input type="checkbox" (change)="toggleEditPassword()" [checked]="editPassword" class="form-check">
+            </div>
+        </div>
+        <div *ngIf="editName || editPassword" class="row mb-1">
+            <div class="col-2">
+                <label for="oldPassword" class="form-label">Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control" name="oldPassword" id="oldPassword" formControlName="oldPassword">
+            </div>
+        </div>
+        <div *ngIf=" editPassword" class="row mb-1">
+            <div class="col-2">
+                <label for="newPassword" class="form-label">New Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control" name="newPassword" id="newPassword" formControlName="newPassword">
+            </div>
+            <div class="col-3">
+                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword">
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" [disabled]="!editName && !editPassword" (click)="updateUser()">Update</button>
+            <button type="button" class="btn btn-danger" [disabled]="!editName && !editPassword" (click)="cancelChanges()">Cancel</button>
+        </div>
+    
+    </form>
+</div>
+<div *ngIf="error" class="text-sm-start text-danger">
+    <p>{{error.error |json}}</p>
+</div>

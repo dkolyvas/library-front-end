@@ -1,7 +1,7 @@
 <div class="mb-3">
     <h3>Subscriptions for {{member?.firstname}}  {{member?.lastname}}</h3>
 </div>
-<div class="mb-2 border-2 border-secondary p-2">
+<div *ngIf="currentSubscription" class="mb-2 border-2 border-secondary p-2">
     <h4>Current Subscription</h4>
     <p>Active Since:  {{currentSubscription?.startDate| date: 'dd/MM/yyyy'}}</p>
     <p>Expires At: {{currentSubscription?.endDate| date:'dd/MM/yyyy'}}</p>
@@ -11,6 +11,10 @@
     <button type="button" class="btn btn-warning" (click)="stopSubscription()">Stop</button>
     <a routerLink="/members" class="btn btn-danger">Back</a>
 
+</div>
+<div *ngIf="!currentSubscription" >
+    <p> No active subscription found</p>
+    <button type="button" class="btn btn-primary" (click)="showAdd()">Add/Renew</button>
 </div>
 <div class="mb-2 border-2 border-secondary" *ngIf="editMode">
     <form [formGroup]="form" >
