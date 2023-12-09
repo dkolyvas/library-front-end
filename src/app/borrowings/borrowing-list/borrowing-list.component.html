@@ -1,0 +1,43 @@
+<div class="p-2 border border-1 border-success">
+    <div class="mb-3">
+        <p class="text-success-emphasis">
+            Showing 
+            <span *ngIf="searchMode == 'book'">Borrowing History for Book with ID {{bookId}}, {{bookName}}</span>
+            <span *ngIf="searchMode == 'member'">Borrowing History for Member with ID {{memberId}}, {{memberName}}</span>
+            <span *ngIf="searchMode=='expired'">Expired Borrowings</span>
+        </p>
+        <button *ngIf="searchMode!='expired'" class="btn btn-warning" (click)="returnClicked()">Go Back</button>
+    </div>
+    <table class="table table-success">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Member Name</th>
+                <th> Book Title</th>
+                <th>Start Date</th>
+                <th>Return Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of borrowingList">
+                <td>{{item.id}}</td>
+                <td>{{item.memberName}}</td>
+                <td>{{item.bookTitle}}</td> 
+                <td>{{item.startDate |date: "dd/MM/yyyy"}}</td>
+                <td>{{item.endDate | date: 'dd/MM/yyyy'}}</td>
+                <td>
+                    <button type="button" class="btn btn-success" (click)="returnBook(item.id)">Return</button>
+                    <button type="button" class="btn btn-danger" (click)="cancelBorrowing(item.id)">Cancel</button>
+                    <button type="button" class="btn btn-secondary" *ngIf="searchMode=='expired'" (click)="showBorrowing(item.id)">Show Details</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class=" mt-3 text-sm-start text-warning" *ngIf="error">
+        <p>   
+            {{error.error|json}}
+        </p>
+    </div>
+
+</div>

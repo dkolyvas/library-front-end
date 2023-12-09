@@ -1,0 +1,16 @@
+<div>
+    <div class="mx-auto mt-3 w-50 p-3 border border-1 border-success">
+        <h3>User Login</h3>
+        <form [formGroup]="form">
+            <label for="username" class="form-label w-70">Username</label>
+            <input type="text" class="form-control w-70" name="username" id="username" formControlName="username">
+            <label for="password" class="form-label w-70">Password</label>
+            <input type="password" class="form-control w-70" name="password" id="password" formControlName="password">
+
+            <button type="submit" (click)="login()" class="btn btn-success"> Login</button>
+        </form>
+    </div>
+    <div *ngIf="error" class="text-sm-start text-danger">
+        <p>{{error.error | json}}</p>
+    </div>
+</div>

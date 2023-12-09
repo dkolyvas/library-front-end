@@ -1,0 +1,46 @@
+<div class="navbar-expand-lg bg-success px-3 py-1">
+    <div  class="row">
+        <h2 class="text-white col-9 ">Library App</h2>
+        <div class="text-white col-3 justify-content-around">
+            <ul class="nav  p-3">
+                <li class="nav-item ">
+                    <a *ngIf="(isLoggedOn$|async)" class="nav-link link-light" routerLink="userupdate">{{username$ |async}}</a>
+                </li>
+                <li class="nav-item ">
+                    <a *ngIf="(isLoggedOn$|async)" class="nav-link link-light" (click)="logout()" href="#">Logout</a>
+                </li>
+                <li class="nav-item ">
+                    <a *ngIf="!(isLoggedOn$ |async)" class="nav-link link-light" routerLink="login"> Login</a>
+                </li>
+            </ul>  
+          
+        </div>
+    </div>
+    <div>
+        <ul class="nav  p-3">
+            <li class="nav-item ">
+                <a class="nav-link link-light" routerLink="members">Members</a>
+            </li>
+            <li class="nav-item text-white">
+                <a class="nav-link link-light" routerLink="books">Books</a>
+            </li>
+            <li class="nav-item text-white">
+                <a class="nav-link link-light" routerLink="borrowings">Borrowing Form</a>
+            </li>
+            <li class="nav-item text-white">
+                <a class="nav-link link-light" routerLink="expired">Expired Borrowings</a>
+            </li>
+            <li class="nav-item text-white" *ngIf="(role$ |async) =='admin'">
+                <a class="nav-link link-light" routerLink="parameters">Parameters</a>
+            </li>
+            <li class="nav-item text-white" *ngIf="(role$ |async) =='admin'">
+                <a class="nav-link link-light" routerLink="users">Users</a>
+            </li>
+        </ul>    
+    </div>
+</div>
+<div class="px-5 py-2">
+
+    <router-outlet class="container-md width-80 mx-auto"></router-outlet>
+
+</div>
